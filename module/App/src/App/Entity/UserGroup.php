@@ -48,4 +48,104 @@ class UserGroup extends AbstractEntity
     {
         $this->users = new ArrayCollection;
     }
+    
+    /**
+     * 
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * 
+     * @return \App\Entity\Community
+     */
+    public function getCommunity()
+    {
+        return $this->community;
+    }
+
+    /**
+     * 
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
+    /**
+     * 
+     * @return boolean
+     */
+    public function getIsSystem()
+    {
+        return $this->isSystem;
+    }
+
+    /**
+     * 
+     * @param string $name
+     * @return \App\Entity\UserGroup
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+        
+        return $this;
+    }
+
+    /**
+     * 
+     * @param \App\Entity\Community $community
+     * @return \App\Entity\UserGroup
+     */
+    public function setCommunity(Community $community)
+    {
+        $this->community = $community;
+        
+        return $this;
+    }
+    
+    /**
+     * Add user to group
+     * 
+     * @param \App\Entity\User $user
+     * @return \App\Entity\UserGroup
+     */
+    public function addUser(User $user)
+    {
+        $this->users->add($user);
+        $user->getUserGroups()->add($this);
+        
+        return $this;
+    }
+    
+    /**
+     * Remove user from group
+     * 
+     * @param \App\Entity\User $user
+     * @return \App\Entity\UserGroup
+     */
+    public function removeUser(User $user)
+    {
+        $this->users->removeElement($user);
+        $user->getUserGroups()->removeElement($this);
+        
+        return $this;
+    }
+
+    /**
+     * 
+     * @param boolean $isSystem
+     * @return \App\Entity\UserGroup
+     */
+    public function setIsSystem($isSystem)
+    {
+        $this->isSystem = (bool) $isSystem;
+        
+        return $this;
+    }
 }

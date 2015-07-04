@@ -16,7 +16,6 @@ use ZfrOAuth2\Server\Entity\TokenOwnerInterface;
  */
 class User extends AbstractEntity implements TokenOwnerInterface
 {
-
     /**
      * @var string
      * @ORM\Column(type="string", unique=true,  length=255)
@@ -179,18 +178,6 @@ class User extends AbstractEntity implements TokenOwnerInterface
     public function setCommunity(Community $community)
     {
         $this->community = $community;
-        
-        return $this;
-    }
-
-    /**
-     * 
-     * @param ArrayCollection $userGroups
-     * @return \App\Entity\User
-     */
-    public function setUserGroups(ArrayCollection $userGroups)
-    {
-        $this->userGroups = $userGroups;
         
         return $this;
     }
