@@ -1,0 +1,29 @@
+<?php
+
+return array(
+    'doctrine' => array(
+        'connection' => array(
+            // Configuration for service `doctrine.connection.orm_default` service
+            'orm_default' => array(
+                'params' => array(
+                    'host'     => 'localhost',
+                    'port'     => '3306',
+                    'user'     => 'username',
+                    'password' => 'password',
+                    'dbname'   => 'database',
+                )
+            ),
+        ),
+
+        'configuration' => array(
+            // posible values for cache: array, apc, filesystem, memcache, memcached, redis, xcache, zenddata
+            'orm_default' => array(
+                'metadata_cache'    => 'array', // @todo set another cache adapter for prodaction env
+                'query_cache'       => 'array',
+                'result_cache'      => 'array',
+                'hydration_cache'   => 'array',
+                'generate_proxies'  => true, // @todo disable on prodaction
+            )
+        ),
+    ),
+);

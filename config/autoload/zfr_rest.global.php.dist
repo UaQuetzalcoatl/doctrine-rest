@@ -1,0 +1,26 @@
+<?php
+
+/**
+ * This is the config file for ZfrRest. Just drop this file into your config/autoload folder (don't
+ * forget to remove the .dist extension from the file), and configure it as you want
+ */
+
+return [
+    'zfr_rest' => [
+        /**
+         * Allow to map a custom exception to a HTTP exception. For instance:
+         *
+         *      'exception_map' => [
+         *          'Application\Exception\CustomerNotFound' => 'ZfrRest\Http\Exception\Client\NotFoundException'
+         *      ]
+         */
+        // 'exception_map' => [],
+
+        /**
+         * If this listener is registered (it is not by default), it will check if the request contains
+         * a header "X-HTTP-Method-Override". This header allows to change the HTTP verb. This is useful in
+         * some contexts (for instance, some companies' proxies only allow GET and POST methods)
+         */
+        // 'register_http_method_override_listener' => false
+    ]
+];
