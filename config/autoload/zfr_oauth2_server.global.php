@@ -7,18 +7,10 @@ return [
      */
     'service_manager' => [
         'factories' => [
-            // 'Zend\Authentication\AuthenticationService' => 'ZfrOAuth2Module\Server\Factory\AuthenticationServiceFactory'
+            'Zend\Authentication\AuthenticationService' => 'ZfrOAuth2Module\Server\Factory\AuthenticationServiceFactory'
         ]
     ],
-
-    /**
-     * Use this config if you are using Doctrine 2 ORM. Otherwise, you can delete it
-     */
     'doctrine' => [
-        /**
-         * Set the resolver. You should change the value to your user class (or any class that
-         * implements the ZfrOAuth2/Server/Entity/TokenOwnerInterface interface
-         */
         'entity_resolver' => [
             'orm_default' => [
                 'resolvers' => [
@@ -53,7 +45,7 @@ return [
          * A callable used to validate the username and password when using the
          * password grant
          */
-        // 'owner_callable' => null,
+        'owner_callable' => 'App\Auth\UserCredentialsCallable',
 
         /**
          * Grant plugin manager

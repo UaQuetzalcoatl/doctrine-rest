@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Description of UserGroup
- * 
+ *
  * @ORM\Entity
  * @ORM\Table(name="user_groups")
  *
@@ -15,32 +15,36 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class UserGroup extends AbstractEntity
 {
+    const ADMIN_GROUP = 'admin';
+    const EVERYONE_GROUP = 'everyone';
+    const GUEST_GROUP = 'guest';
+    
     /**
      * @var string
      * @ORM\Column(type="string", length=255)
      */
     protected $name;
-    
+
     /**
      *
      * @var \App\Entity\Community
      * @ORM\ManyToOne(targetEntity="Community", inversedBy="userGroups")
-     * @ORM\JoinColumn(name="community_id", referencedColumnName="id") 
+     * @ORM\JoinColumn(name="community_id", referencedColumnName="id")
      */
     protected $community;
-    
+
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection
-     * @ORM\ManyToMany(targetEntity="User", mappedBy="userGroups")
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="userGroups", cascade={"persist"})
      **/
     protected $users;
-    
+
     /**
      * @var bool
      * @ORM\Column(type="boolean", name="is_system")
      */
     protected $isSystem = false;
-    
+
     /**
      * Constructor
      */
@@ -48,9 +52,9 @@ class UserGroup extends AbstractEntity
     {
         $this->users = new ArrayCollection;
     }
-    
+
     /**
-     * 
+     *
      * @return string
      */
     public function getName()
@@ -59,7 +63,7 @@ class UserGroup extends AbstractEntity
     }
 
     /**
-     * 
+     *
      * @return \App\Entity\Community
      */
     public function getCommunity()
@@ -68,7 +72,7 @@ class UserGroup extends AbstractEntity
     }
 
     /**
-     * 
+     *
      * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getUsers()
@@ -77,7 +81,7 @@ class UserGroup extends AbstractEntity
     }
 
     /**
-     * 
+     *
      * @return boolean
      */
     public function getIsSystem()
@@ -86,32 +90,32 @@ class UserGroup extends AbstractEntity
     }
 
     /**
-     * 
+     *
      * @param string $name
      * @return \App\Entity\UserGroup
      */
     public function setName($name)
     {
         $this->name = $name;
-        
+
         return $this;
     }
 
     /**
-     * 
+     *
      * @param \App\Entity\Community $community
      * @return \App\Entity\UserGroup
      */
     public function setCommunity(Community $community)
     {
         $this->community = $community;
-        
+
         return $this;
     }
-    
+
     /**
      * Add user to group
-     * 
+     *
      * @param \App\Entity\User $user
      * @return \App\Entity\UserGroup
      */
@@ -119,13 +123,13 @@ class UserGroup extends AbstractEntity
     {
         $this->users->add($user);
         $user->getUserGroups()->add($this);
-        
+
         return $this;
     }
-    
+
     /**
      * Remove user from group
-     * 
+     *
      * @param \App\Entity\User $user
      * @return \App\Entity\UserGroup
      */
@@ -133,19 +137,19 @@ class UserGroup extends AbstractEntity
     {
         $this->users->removeElement($user);
         $user->getUserGroups()->removeElement($this);
-        
+
         return $this;
     }
 
     /**
-     * 
+     *
      * @param boolean $isSystem
      * @return \App\Entity\UserGroup
      */
     public function setIsSystem($isSystem)
     {
         $this->isSystem = (bool) $isSystem;
-        
+
         return $this;
     }
 }

@@ -8,7 +8,7 @@ use ZfrOAuth2\Server\Entity\TokenOwnerInterface;
 
 /**
  * User Entity
- * 
+ *
  * @ORM\Entity
  * @ORM\Table(name="users")
  *
@@ -27,34 +27,34 @@ class User extends AbstractEntity implements TokenOwnerInterface
      * @ORM\Column(type="string", length=128)
      */
     protected $password;
-    
+
     /**
      * @var string
      * @ORM\Column(type="string", name="first_name",  length=255)
      */
     protected $firstName;
-    
+
     /**
      * @var string
      * @ORM\Column(type="string", name="last_name",  length=255)
      */
     protected $lastName;
-    
+
     /**
      *
      * @var \App\Entity\Community
      * @ORM\ManyToOne(targetEntity="Community", inversedBy="users")
-     * @ORM\JoinColumn(name="community_id", referencedColumnName="id") 
+     * @ORM\JoinColumn(name="community_id", referencedColumnName="id")
      */
     protected $community;
-    
+
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection
      * @ORM\ManyToMany(targetEntity="UserGroup", inversedBy="users")
      * @ORM\JoinTable(name="users_groups")
      **/
     protected $userGroups;
-    
+
     /**
      * Constructor
      */
@@ -75,14 +75,14 @@ class User extends AbstractEntity implements TokenOwnerInterface
 
     /**
      * Set email
-     * 
+     *
      * @param string $email
      * @return \App\Entity\User
      */
     public function setEmail($email)
     {
         $this->email = $email;
-        
+
         return $this;
     }
 
@@ -106,30 +106,30 @@ class User extends AbstractEntity implements TokenOwnerInterface
     public function setPassword($password)
     {
         $this->password = $password;
-        
+
         return $this;
     }
-    
+
     /**
-     * 
+     *
      * @return string
      */
     public function getFirstName()
     {
         return $this->firstName;
     }
-    
+
     /**
-     * 
+     *
      * @return string
      */
     public function getLastName()
     {
         return $this->lastName;
     }
-    
+
     /**
-     * 
+     *
      * @return \App\Entity\Community
      */
     public function getCommunity()
@@ -138,7 +138,7 @@ class User extends AbstractEntity implements TokenOwnerInterface
     }
 
     /**
-     * 
+     *
      * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getUserGroups()
@@ -147,45 +147,45 @@ class User extends AbstractEntity implements TokenOwnerInterface
     }
 
     /**
-     * 
+     *
      * @param string $firstName
      * @return \App\Entity\User
      */
     public function setFirstName($firstName)
     {
         $this->firstName = $firstName;
-        
+
         return $this;
     }
 
     /**
-     * 
+     *
      * @param string $firstName
      * @return \App\Entity\User
      */
     public function setLastName($lastName)
     {
         $this->lastName = $lastName;
-        
+
         return $this;
     }
 
     /**
-     * 
+     *
      * @param \App\Entity\Community $community
      * @return \App\Entity\User
      */
     public function setCommunity(Community $community)
     {
         $this->community = $community;
-        
+
         return $this;
     }
 
     /**
-     * Returns user id. 
+     * Returns user id.
      * ZfrOAuth2\Server\Entity\TokenOwnerInterface implementation
-     * 
+     *
      * @return int
      */
     public function getTokenOwnerId()
